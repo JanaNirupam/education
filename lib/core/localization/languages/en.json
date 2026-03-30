@@ -1,4 +1,8 @@
 {
   "hello": "Hello",
-  "loginTitle": "Login"
+  "loginTitle": "Login",
+  "welcomeTitle": "Let's find the \"A\" with us",
+  "welcomeSubtitle": "Please sign in to view personalized recommendations",
+  "signUp": "Sign up",
+  "skip": "Skip"
 }

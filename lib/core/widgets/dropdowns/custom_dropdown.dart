@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import '../../theme/colors.dart';
 
 class CustomDropdown<T> extends StatelessWidget {
-  final T? value;
+  final T? initialValue;
   final List<DropdownMenuItem<T>> items;
   final ValueChanged<T?>? onChanged;
 
-  const CustomDropdown({Key? key, this.value, required this.items, this.onChanged}) : super(key: key);
+  const CustomDropdown({Key? key, this.initialValue, required this.items, this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-      value: value,
+      value: initialValue,
       items: items,
       onChanged: onChanged,
       decoration: InputDecoration(
