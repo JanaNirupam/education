@@ -1,12 +1,13 @@
 import 'dart:math' as math;
 
+import 'package:edu_app/features/auth/presentation/screens/sign_in_screen.dart';
+import 'package:edu_app/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 // Using PNG image asset for logo
 
 import '../../../../core/constants/assets.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/localization/app_localizations.dart';
-import '../screens/sign_up_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
+                            builder: (context) => const SignInScreen(),
                           ),
                         );
                       },
@@ -97,7 +98,14 @@ class WelcomeScreen extends StatelessWidget {
 
                     CustomButton(
                       label: AppLocalizations.of(context)?.translate('skip') ?? 'Skip',
-                      onPressed: () {},
+                      onPressed: () {
+                           Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpScreen(),
+                          ),
+                        );
+                      },
                       color: Colors.transparent,
                       textColor: Theme.of(context).primaryColor,
                       height: 54,
