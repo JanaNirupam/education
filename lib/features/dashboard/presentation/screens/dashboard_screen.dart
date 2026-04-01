@@ -1,82 +1,38 @@
+import 'package:edu_app/features/classwork/presentation/screens/classwork_screen.dart';
+import 'package:edu_app/features/dashboard/presentation/widgets/explore_page.dart';
+import 'package:edu_app/features/stream/presentation/screens/stream_screen.dart';
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _pages = <Widget>[
+    ExplorePage(),
+    StreamScreen(),
+    ClassWorkScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Good evening!',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Hardline Scott',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search your teacher',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Popular Teachers',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    TeacherCard(name: 'Cassie Valdez', subject: 'Biology'),
-                    TeacherCard(name: 'Paul Simons', subject: 'Chemistry'),
-                    TeacherCard(name: 'Graham O.', subject: 'Physics'),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Popular Institution',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              const InstitutionCard(
-                name: 'Victory College',
-                description: 'Studying how CBD awareness and availability as it related to pain management alternatives.',
-              ),
-            ],
-          ),
-        ),
-      ),
+    
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
